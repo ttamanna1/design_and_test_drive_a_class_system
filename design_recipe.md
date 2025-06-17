@@ -134,11 +134,32 @@ combinations that reflect the ways in which the system will be used._
 # EXAMPLE
 
 """
-Instantiated a tyre with a position
+add tyre to car
 
 """
-tyre = Tyre('FL')
-assert tyre.position == 'FL'
+def test_add_tyre_to_car()
+    car = Car()
+    car.add_tyre('FL')
+    assert car.list_tyre() == {'pressure': 250, 'tread depth': 8, 'date': '17/06/25'}
+
+def test_adding_same_tyre_to_car_to_raise_exception()
+    car = Car()
+    car.add_tyre('FL')
+    with pytest.raises(Exception) as e:
+        car.add_tyre('FL')
+    assert str(e.value) == 'FL tyre already added to car'
+
+def test_add_multiple_tyres_to_car()
+    car = Car()
+    car.add_tyre('FL')
+    car.add_tyre('FR')
+    assert car.list_tyre() == [
+        {'position': 'FL','pressure': 250, 'tread depth': 8, 'date': '17/06/25'}
+        {'position': 'FR','pressure': 250, 'tread depth': 8, 'date': '17/06/25'}
+
+    ]
+
+
 
 ```
 
@@ -150,13 +171,81 @@ a more granular level of detail._
 ```python
 # EXAMPLE
 
+# TYRE TESTS
+
 """
-Given a track with a title and an artist
-We see the title reflected in the title property
+Instantiated a tyre with a position
+
 """
-track = Track("Carte Blanche", "Veracocha")
-track.title # => "Carte Blanche"
-```
+tyre = Tyre('FL')
+assert tyre.position == 'FL'
+
+
+"""
+add readings to tyre
+
+"""
+def test_add_reading_to_tyre()
+    tyre = Tyre('FL')
+    tyre.add_reading(250, 8, '17/06/25')
+    assert tyre.list_current_reading() == {'pressure': 250, 'tread depth': 8, 'date': '17/06/25'}
+
+"""
+add readings to tyre with invalid date
+raise exception is date is not in datetime object
+
+"""
+def test_add_reading_to_tyre_with_invalid_date()
+    tyre = Tyre('FL')
+    with pytest.raises(Exception) as e:
+        tyre.add_reading(250, 8, '1700625')
+    assert str(e.value) == "Enter date in correct format"
+
+"""
+listing all readings of tyre
+
+"""
+def test_list_all_readings_of_tyre()
+    tyre = Tyre('FL')
+    tyre.add_reading(250, 8, '17/06/25')
+    tyre.add_reading(300, 9, '16/05/25')
+    assert tyre.list_all_readings_of_tyre() == [
+        {'pressure': 250, 'tread depth': 8, 'date': '17/06/25'}
+        {'pressure': 300, 'tread depth': 9, 'date': '16/05/25'}
+    ]
+
+"""
+listing all readings of tyre with no readings
+
+"""
+def test_list_no_readings_of_tyre()
+    tyre = Tyre('FL')
+    assert tyre.list_all_readings_of_tyre() == []
+
+
+"""
+listing current reading of tyre
+
+"""
+def test_current_reading_of_tyre()
+    tyre = Tyre('FL')
+    tyre.add_reading(250, 8, '16/05/25')
+    tyre.add_reading(300, 9, '17/06/25')
+    assert tyre.list_current_reading_of_tyre() == [
+        {'pressure': 300, 'tread depth': 9, 'date': '17/06/25'}
+    ]
+
+# CAR TESTS
+
+"""
+Instantiated a car with an empty list/dictionary for tyres
+
+"""
+car = Car()
+assert car.tyres == [] / {}
+
+
+
 
 _Encode each example as a test. You can add to the above list as you go._
 
