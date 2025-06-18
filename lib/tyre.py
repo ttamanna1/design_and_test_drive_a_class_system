@@ -16,9 +16,9 @@ class Tyre:
     def list_all_readings(self):
         # Returns:
         # {}
-        pass
+        return self.readings
 
     def list_current_reading(self):
         # Returns:
         # {}
-        return self.readings
+        return [self.readings[-1]]
