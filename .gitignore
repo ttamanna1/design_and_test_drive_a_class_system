@@ -1,1 +1,7 @@
 *ven
+/ven/
+*venv
+ven/*
+# Ignore __pycache__ files
+__pycache__/
+*.py[cod]
