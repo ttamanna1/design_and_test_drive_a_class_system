@@ -1,8 +1,5 @@
 
 class Tyre:
-    # User-facing properties:
-    #   title: string
-    #   artist: string
 
     def __init__(self, position):
         # Parameters:
