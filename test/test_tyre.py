@@ -40,9 +40,8 @@ def test_current_reading_of_tyre():
     tyre = Tyre('FL')
     tyre.add_readings(250, 8, '16/05/25')
     tyre.add_readings(300, 9, '17/06/25')
-    assert tyre.list_current_reading() == [
-        {'pressure': 300, 'tread depth': 9, 'date': '17/06/25'}
-    ]
+    assert tyre.list_current_reading() == [{'pressure': 300, 'tread depth': 9, 'date': '17/06/25'}]
+
 
 """
 listing all readings of tyre with no readings
